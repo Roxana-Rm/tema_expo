@@ -25,50 +25,182 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('App con SafeArea, Expanded y Flexible'),
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Añadido para espacio entre cada widget
-          children: [
-            const Text(
-              'Encabezado de SafeArea',
-              style: TextStyle(fontSize: 30),
-            ),
-            
-            Expanded(
-              child: Container(
-                 padding: EdgeInsets.all(25),
-                margin: const EdgeInsets.all(10), // Añadido margen para espacio
-                color: Colors.pink,
-                child: const Center(
-                  child: Text(
-                    ' Expanded',
-                    style: TextStyle(color: Colors.white, fontSize: 40),
-                  ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
                 ),
               ),
             ),
-            
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.all(10), // Añadido margen para espacio
-                color: Colors.green,
-                child: const Center(
-                  child: Text(
-                    ' Flexible',
-                    style: TextStyle(color: Colors.white, fontSize: 40),
+            ListTile(
+              title: Text('SafeArea'),
+              onTap: () {
+                Navigator.pop(context); // Cerrar el drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SafeAreaWidget(),
                   ),
-                ),
-              ),
+                );
+              },
             ),
-            
-            const Text(
-              'Pie de página',
-              style: TextStyle(fontSize: 30),
+            ListTile(
+              title: Text('Expanded'),
+              onTap: () {
+                Navigator.pop(context); // Cerrar el drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ExpandedWidget(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Flexible'),
+              onTap: () {
+                Navigator.pop(context); // Cerrar el drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FlexibleWidget(),
+                  ),
+                );
+              },
             ),
           ],
+        ),
+      ),
+      body: Center(
+        child: Text(
+          'Hola',
+          style: TextStyle(fontSize: 30),
         ),
       ),
     );
   }
 }
 
+class SafeAreaWidget extends StatelessWidget {
+  final estilo = TextStyle(fontSize: 20);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
+            children: List.generate(
+                100,
+                (i) => Text(
+                      '$i -Hola',
+                      style: estilo,
+                    ))),
+      ),
+    );
+  }
+}
+
+class ExpandedWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Expanded Widget'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            color: Colors.pink,
+            height: 100,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                ' 1',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.green,
+              child: Center(
+                child: Text(
+                  'Contenido del Expanded Widget',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.pink,
+            height: 200,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                ' 2',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FlexibleWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flexible Widget'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            color: Colors.pink,
+            height: 100,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                ' 1',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 3, // Puedes ajustar el flex según tus necesidades
+            child: Container(
+              color: Colors.blue,
+              child: Center(
+                child: Text(
+                  'Contenido del Flexible Widget',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.pink,
+            height: 200,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                ' 2',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
