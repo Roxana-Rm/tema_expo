@@ -95,6 +95,7 @@ class SafeAreaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: ListView(
             children: List.generate(
@@ -112,47 +113,30 @@ class ExpandedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Expanded Widget'),
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.pink,
-            height: 100,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                ' 1',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.green,
-              child: Center(
-                child: Text(
-                  'Contenido del Expanded Widget',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.pink,
-            height: 200,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                ' 2',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Expanded Widget'),
+        ),
+        body: Row(
+          children: <Widget>[
+            Cuadrado(Colors.pink),
+            Expanded(flex: 5, child: Cuadrado(Colors.green)),
+            Expanded(flex: 3, child: Cuadrado(Colors.purple)),
+            Cuadrado(Colors.pink),
+          ],
+        ));
+  }
+}
+
+class Cuadrado extends StatelessWidget {
+  final Color color;
+  Cuadrado(this.color);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 50.0,
+        height: 50.0,
+        decoration: BoxDecoration(color: this.color));
   }
 }
 
