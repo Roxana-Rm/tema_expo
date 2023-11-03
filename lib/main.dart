@@ -23,7 +23,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App con SafeArea, Expanded y Flexible'),
+        title: const Text('Widgets: SafeArea, Expanded y Flexible'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.blue,
               ),
               child: Text(
-                'Drawer Header',
+                'Menu',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
