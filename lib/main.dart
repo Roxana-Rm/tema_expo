@@ -119,8 +119,8 @@ class ExpandedWidget extends StatelessWidget {
         body: Row(
           children: <Widget>[
             Cuadrado(Colors.pink),
-            Expanded(flex: 5, child: Cuadrado(Colors.green)),
-            Expanded(flex: 3, child: Cuadrado(Colors.purple)),
+            Expanded(child: Cuadrado(Colors.green)),
+            Expanded(child: Cuadrado(Colors.purple)),
             Cuadrado(Colors.pink),
           ],
         ));
@@ -144,47 +144,29 @@ class FlexibleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flexible Widget'),
-      ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.pink,
-            height: 100,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                ' 1',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 3, // Puedes ajustar el flex según tus necesidades
-            child: Container(
-              color: Colors.blue,
-              child: Center(
-                child: Text(
-                  'Contenido del Flexible Widget',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.pink,
-            height: 200,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                ' 2',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Flexible Widget'),
+        ),
+        body: Center(
+          child: Column(children: [
+            Flexible(
+                flex: 3,
+                fit: FlexFit.loose,
+                child: Container(
+                  height: 100,
+                  color: Colors.yellow,
+                )),
+            Flexible(
+                flex: 3,
+                child: Container(
+                  color: Colors.purple,
+                )),
+            Flexible(
+                flex: 3,
+                child: Container(
+                  color: Colors.blueGrey,
+                )),
+          ]),
+        ));
   }
 }
